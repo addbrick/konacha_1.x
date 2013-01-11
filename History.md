@@ -1,4 +1,16 @@
-# master
+# 1.x-stable
+
+# 1.5.1
+
+* Fix exit code to be 0 if there are pending tests
+* Show full backtrace when test runner fails
+* Update mocha (1.4.1)
+
+# 1.5.0
+
+* Update mocha (1.4.0+) and chai (1.2.0)
+
+# 1.4.2
 
 * Update chai (1.1.1)
 * Improved error messaging (rake konacha:run)
