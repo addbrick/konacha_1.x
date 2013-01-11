@@ -3,6 +3,9 @@
 [![Build Status](https://secure.travis-ci.org/jfirebaugh/konacha.png?branch=master)](http://travis-ci.org/jfirebaugh/konacha)
 [![Dependency Status](https://gemnasium.com/jfirebaugh/konacha.png)](https://gemnasium.com/jfirebaugh/konacha)
 
+> Note: this is the stable 1.x branch of Konacha. Development on what will become Konacha 2.0
+> is happening on the [master](https://github.com/jfirebaugh/konacha/tree/master) branch.
+
 Konacha is a Rails engine that allows you to test your JavaScript with the
 [mocha](http://visionmedia.github.com/mocha/) test framework and [chai](http://chaijs.com/)
 assertion library.
@@ -25,7 +28,7 @@ Add konacha to the `:test` and `:development` groups in the Gemfile and `bundle 
 
 ```ruby
 group :test, :development do
-  gem "konacha"
+  gem 'konacha'
 end
 ```
 
@@ -70,30 +73,44 @@ describe "Array#sum", ->
 
 ## Running (Rake Tasks)
 
-### `rake konacha:serve`
+### In the Browser
 
-The `konacha:serve` rake task starts a server for your tests. You can go to the root
-page to run all specs (e.g. `http://localhost:3500/`), a sub page to run an individual
-spec file (e.g. `http://localhost:3500/array_sum_spec`), or a path to a subdirectory to
-run a subset of specs (e.g. `http://localhost:3500/models`).
-
-### `rake konacha:run`
-
-The `konacha:run` rake task will let you run your tests from the command line.
-
-To run individual specs, pass a comma seperated list of spec file names via the
-`SPEC` environment variable.
+To start a server for your tests, type:
 
 ```
-$ rake konacha:run SPEC=foo_spec
-$ rake konacha:run SPEC=foo_spec,bar_spec,etc_spec
+$ bundle exec rake konacha:serve
+```
+
+Then open [http://localhost:3500](http://localhost:3500) in your browser, and
+you will see all your tests running. You can also go to a sub-page to run an
+individual spec file (e.g. `http://localhost:3500/array_sum_spec`), or a path
+to a subdirectory to run a subset of specs (e.g.
+`http://localhost:3500/models`).
+
+This is the recommended mode for development, since you can simply hit refresh
+to reload all your test and asset files.
+
+### Command-Line Runner
+
+To run your tests from the command line, type:
+
+```
+$ bundle exec rake konacha:run
+```
+
+To run individual specs, pass a comma seperated list of spec file names via
+the `SPEC` environment variable.
+
+```
+$ bundle exec rake konacha:run SPEC=foo_spec
+$ bundle exec rake konacha:run SPEC=foo_spec,bar_spec,etc_spec
 ```
 
 ## Spec Helper
 
 Since Konacha integrates with the asset pipeline, using setup helpers in your specs is
 easy. Just create a `spec_helper.js` or `spec_helper.js.coffee` file in `specs/javascripts`
-and require it in your tests:
+and require it in your tests, like so:
 
 ```javascript
 //= require spec_helper
@@ -102,6 +119,13 @@ and require it in your tests:
 describe("Array#sum", function() {
   ...
 });
+```
+
+The `spec_helper` is a good place to set Mocha and Chai options as well, for instance:
+
+```javascript
+// Show stack trace on failing assertion.
+chai.Assertion.includeStack = true;
 ```
 
 ## Directives and Asset Bundling
