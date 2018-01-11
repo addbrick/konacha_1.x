@@ -4,7 +4,7 @@
 [![Dependency Status](https://gemnasium.com/jfirebaugh/konacha.png)](https://gemnasium.com/jfirebaugh/konacha)
 
 Konacha is a Rails engine that allows you to test your JavaScript with the
-[mocha](http://visionmedia.github.com/mocha/) test framework and [chai](http://chaijs.com/)
+[mocha](http://mochajs.org/) test framework and [chai](http://chaijs.com/)
 assertion library.
 
 [![Konacha][2]][1]
@@ -144,7 +144,7 @@ setting properties of `Konacha.mochaOptions`:
 
 ```javascript
 // set the Mocha test interface
-// see http://visionmedia.github.com/mocha/#interfaces
+// see https://mochajs.org/#interfaces
 Konacha.mochaOptions.ui = 'bdd';
 
 // ignore the following globals during leak detection
@@ -234,7 +234,7 @@ Run `bundle exec rake` to run the test suite.
 ### Contributing to Mocha and Chai
 
 The Konacha repository includes the
-[Mocha](https://github.com/visionmedia/mocha) and
+[Mocha](http://mochajs.org/) and
 [Chai](https://github.com/chaijs/chai) repositories as submodules, so
 you can hack on them directly:
 
